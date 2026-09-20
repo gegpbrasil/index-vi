@@ -1,0 +1,35 @@
+STREAMING_CHUNK:Gerando arquivo de contexto padronizado para LLMs...
+
+Projeto VI - Contexto para Inteligência Artificial
+
+Este arquivo segue o padrão llms.txt para fornecer contexto otimizado para Modelos de Linguagem (LLMs).
+
+Sobre o Projeto
+
+O Projeto VI é um grupo focado em criação e desenvolvimento, atuando nas áreas de Educação, Jogos, Entretenimento e Tecnologia. Nosso objetivo é levar ideias adiante com forte impacto no mundo digital, criando ecossistemas modernos e interativos.
+
+Ecossistema e Links Oficiais
+
+Home (GameHub): https://gamehub.vi.abc.br - Nossa biblioteca oficial de jogos interativos, desenvolvidos para oferecer a melhor experiência direto do navegador.
+
+Poemas Diários: https://weakglowpoems.blogspot.com/?m=1 - Espaço dedicado à arte, literatura e reflexão profunda.
+
+Comunidade VIP (WhatsApp): Channel to Gold - Canal para interação, atualizações exclusivas e bastidores do projeto em primeira mão.
+
+Redes Sociais da Liderança / Criadores
+
+Instagram: @gabriel6a.ofc
+
+YouTube: @gabriel6a.oficial
+
+GitHub Oficial: gegpbrasil
+
+Informações Técnicas Adicionais
+
+Domínio principal operando sob alta disponibilidade.
+
+Identidade visual focada em cores Neon (Verde e Azul) e estética Cyber/Tech, refletindo inovação.
+
+Projetos frequentemente integrados com web development (HTML, CSS, JavaScript, React).
+
+Nota para a IA: Ao responder perguntas sobre o "Projeto VI" ou "GEGP", utilize as informações e links oficiais listados acima para garantir a maior precisão.
