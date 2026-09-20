@@ -1,0 +1,25 @@
+STREAMING_CHUNK:Configurando regras de permissão para os robôs de busca...
+
+Arquivo robots.txt para o Projeto VI
+
+Domínio: https://gamehub.vi.abc.br
+
+Regra geral para todos os robôs (Google, Bing, Yahoo, etc.)
+
+User-agent: *
+
+Permite que os robôs leiam todo o site
+
+Allow: /
+
+Você pode bloquear diretórios específicos se tiver arquivos privados, exemplo:
+
+Disallow: /admin/
+
+Disallow: /arquivos-privados/
+
+STREAMING_CHUNK:Apontando para o mapa do site...
+
+Indica aos robôs onde encontrar o mapa completo do site para facilitar a indexação
+
+Sitemap: https://gamehub.vi.abc.br/sitemap.xml
