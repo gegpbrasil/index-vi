@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto VI - O Futuro é Agora</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <style>
+        /* --- PALETA PROJETO VI (Azul Profundo, Azul Brilhante, Verde) --- */
+        :root {
+            --bg-body: #020617;       /* Fundo super escuro (Slate) */
+            --bg-card: rgba(15, 23, 42, 0.7); /* Azul escuro translúcido */
+            --primary-blue: #2563eb;  /* Azul base da logo */
+            --light-blue: #3b82f6;    /* Azul claro */
+            --cyan-glow: #06b6d4;     /* Brilho ciano */
+            --primary-green: #22c55e; /* Verde da seta (Crescimento) */
+            --neon-green: #4ade80;    /* Verde brilhante */
+            --text-main: #ffffff;     
+            --text-muted: #94a3b8;    
+            --border-color: rgba(37, 99, 235, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Fundo animado com gradientes */
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(34, 197, 94, 0.15), transparent 25%);
+            background-size: 200% 200%;
+            animation: moveBackground 15s ease infinite alternate;
+        }
+
+        /* --- ANIMAÇÕES KEYFRAMES --- */
+        @keyframes moveBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); filter: drop-shadow(0 5px 15px rgba(37, 99, 235, 0.4)); }
+            50% { transform: translateY(-20px) scale(1.05); filter: drop-shadow(0 25px 30px rgba(34, 197, 94, 0.6)); }
+            100% { transform: translateY(0px) scale(1); filter: drop-shadow(0 5px 15px rgba(37, 99, 235, 0.4)); }
+        }
+
+        @keyframes neonPulseBlue {
+            0% { box-shadow: 0 0 5px var(--primary-blue), 0 0 10px var(--primary-blue); }
+            50% { box-shadow: 0 0 20px var(--light-blue), 0 0 30px var(--cyan-glow); }
+            100% { box-shadow: 0 0 5px var(--primary-blue), 0 0 10px var(--primary-blue); }
+        }
+
+        @keyframes neonPulseGreen {
+            0% { text-shadow: 0 0 5px var(--primary-green); }
+            50% { text-shadow: 0 0 20px var(--neon-green), 0 0 30px var(--neon-green); }
+            100% { text-shadow: 0 0 5px var(--primary-green); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes borderSpin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--border-color);
+            padding: 15px 0;
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px; margin: 0 auto; padding: 0 20px;
+        }
+
+        .nav-bar {
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo-text {
+            font-size: 2rem; font-weight: 900; letter-spacing: -1px;
+            background: linear-gradient(90deg, var(--light-blue), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex; align-items: center; gap: 10px;
+            animation: neonPulseGreen 3s infinite;
+        }
+
+        .nav-links {
+            display: flex; gap: 20px; align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-main); text-decoration: none; font-weight: 700;
+            padding: 8px 16px; border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .nav-links a::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
+            background: rgba(37, 99, 235, 0.2); z-index: -1;
+            transition: width 0.4s ease; border-radius: 8px;
+        }
+
+        .nav-links a:hover::before { width: 100%; }
+        .nav-links a:hover { color: var(--neon-green); transform: translateY(-2px); }
+
+        /* --- HERO SECTION EXTREMA --- */
+        .hero {
+            padding: 80px 20px 120px; 
+            text-align: center;
+            position: relative;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .hero-img {
+            max-width: 300px;
+            width: 100%;
+            margin-bottom: 30px;
+            animation: float 4s ease-in-out infinite;
+            border-radius: 20px;
+            z-index: 10;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.8);
+        }
+        
+        .hero h1 span.blue { color: var(--light-blue); }
+        .hero h1 span.green { color: var(--neon-green); animation: neonPulseGreen 2s infinite alternate; }
+
+        .hero p {
+            font-size: 1.3rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 40px;
+            animation: slideInUp 1s ease forwards;
+            opacity: 0;
+            animation-delay: 0.3s;
+        }
+
+        .hero-btns {
+            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+            opacity: 0; animation: slideInUp 1s ease forwards; animation-delay: 0.6s;
+        }
+
+        .btn {
+            padding: 15px 40px; border-radius: 50px; font-weight: 900; text-decoration: none;
+            text-transform: uppercase; font-size: 1.1rem; letter-spacing: 1px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex; align-items: center; gap: 10px;
+            position: relative; overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue); color: white;
+            border: 2px solid var(--light-blue);
+            animation: neonPulseBlue 2s infinite;
+        }
+        
+        .btn-primary::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg); z-index: -1; transition: 0.5s;
+        }
+        
+        .btn-primary:hover::after { left: 100%; top: 100%; }
+        .btn-primary:hover { transform: scale(1.1); background: var(--primary-green); border-color: var(--neon-green); box-shadow: 0 0 30px var(--neon-green); color: black; }
+
+        .btn-outline {
+            background: transparent; color: var(--neon-green); border: 2px solid var(--neon-green);
+        }
+        
+        .btn-outline:hover {
+            background: var(--neon-green); color: black; box-shadow: 0 0 20px var(--neon-green); transform: scale(1.1);
+        }
+
+        /* --- GRID DE CONTEÚDO (CARDS ANIMADOS) --- */
+        .section { padding: 100px 0; position: relative; }
+        
+        .section-title {
+            text-align: center; font-size: 3rem; margin-bottom: 60px;
+            background: linear-gradient(90deg, var(--text-main), var(--text-muted));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .grid-layout {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;
+        }
+
+        .card {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            padding: 40px 30px; border-radius: 24px; transition: all 0.5s ease;
+            display: flex; flex-direction: column; position: relative;
+            backdrop-filter: blur(10px);
+            opacity: 0; /* Para o JS Reveal */
+            transform: translateY(50px);
+            overflow: hidden;
+        }
+
+        /* Efeito de borda giratória no Hover */
+        .card::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, var(--primary-blue));
+            animation: borderSpin 4s linear infinite;
+            opacity: 0; transition: opacity 0.5s; z-index: -1;
+        }
+        
+        .card::after {
+            content: ''; position: absolute; inset: 2px; background: var(--bg-card);
+            border-radius: 22px; z-index: -1;
+        }
+
+        .card:hover::before { opacity: 1; background: conic-gradient(transparent, transparent, transparent, var(--neon-green)); }
+        
+        .card:hover {
+            transform: translateY(-15px) scale(1.03); 
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
+            border-color: transparent;
+        }
+
+        .icon-box {
+            width: 70px; height: 70px; background: rgba(37, 99, 235, 0.1);
+            border-radius: 20px; display: flex; align-items: center; justify-content: center;
+            margin-bottom: 25px; transition: 0.5s;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+        }
+        .card:hover .icon-box {
+            background: var(--primary-green); border-color: var(--neon-green); transform: rotate(360deg);
+        }
+        .icon-box span { font-size: 36px; color: var(--light-blue); transition: 0.5s; }
+        .card:hover .icon-box span { color: black; }
+
+        .card h3 { font-size: 1.8rem; margin-bottom: 15px; color: white; }
+        .card p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; flex: 1; }
+
+        .card-link {
+            color: var(--neon-green); text-decoration: none; font-weight: 800;
+            display: flex; align-items: center; gap: 10px; background: rgba(34, 197, 94, 0.1);
+            padding: 15px 20px; border-radius: 12px; justify-content: center; transition: 0.3s;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .card-link:hover { 
+            background: var(--primary-green); color: black;
+            box-shadow: 0 0 20px var(--neon-green);
+            transform: scale(1.05);
+        }
+
+        /* --- REDES SOCIAIS --- */
+        .social-grid {
+            display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            display: flex; align-items: center; justify-content: center;
+            width: 60px; height: 60px; border-radius: 50%;
+            background: rgba(255,255,255,0.05); color: white;
+            font-size: 24px; text-decoration: none; border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .social-btn.insta:hover { background: #E1306C; border-color: #E1306C; box-shadow: 0 0 20px #E1306C; transform: translateY(-10px) scale(1.1); }
+        .social-btn.yt:hover { background: #FF0000; border-color: #FF0000; box-shadow: 0 0 20px #FF0000; transform: translateY(-10px) scale(1.1); }
+        .social-btn.wpp:hover { background: #25D366; border-color: #25D366; box-shadow: 0 0 20px #25D366; transform: translateY(-10px) scale(1.1); }
+        .social-btn.gh:hover { background: #6e5494; border-color: #6e5494; box-shadow: 0 0 20px #6e5494; transform: translateY(-10px) scale(1.1); }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border-color); padding: 50px 0; text-align: center;
+            background: #000; color: var(--text-muted); font-size: 1rem;
+            position: relative; overflow: hidden;
+        }
+        
+        footer::before {
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 80%; height: 1px; background: linear-gradient(90deg, transparent, var(--light-blue), transparent);
+        }
+
+        /* Class for JS reveal */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .nav-links { display: none; } /* Simplificado para mobile, ideal menu hambúrguer */
+            .logo-text { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-bar">
+            <div class="logo-text">
+                <span class="material-symbols-rounded" style="font-size: 2rem;">rocket_launch</span>
+                Projeto VI
+            </div>
+            <nav class="nav-links">
+                <a href="#ecosistema">Ecossistema</a>
+                <a href="#projetos">Projetos & Links</a>
+                <a href="#redes">Comunidade</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            
+            <h1>O Futuro <span class="blue">Digital</span><br>Começa <span class="green">Aqui</span></h1>
+            <p>
+                Educação, Jogos, Entretenimento e Tecnologia. Nós não apenas seguimos as tendências, nós criamos o nosso próprio universo. Conheça o ecossistema definitivo do Projeto VI.
+            </p>
+            <div class="hero-btns">
+                <a href="https://gamehub.vi.abc.br" target="_blank" class="btn btn-primary">
+                    <span class="material-symbols-rounded">play_circle</span> Acessar GameHub
+                </a>
+                <a href="#projetos" class="btn btn-outline">
+                    <span class="material-symbols-rounded">explore</span> Explorar Links
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos" class="section">
+        <div class="container">
+            <h2 class="section-title">Nosso Ecossistema</h2>
+            <div class="grid-layout">
+                
+                <!-- CARD GAMEHUB -->
+                <div class="card reveal">
+                    <div class="icon-box"><span class="material-symbols-rounded">sports_esports</span></div>
+                    <h3>Home do VI (GameHub)</h3>
+                    <p>
+                        A nova casa oficial! Nossa biblioteca de jogos interativos, desenvolvidos para oferecer a melhor experiência direto do seu navegador.
+                    </p>
+                    <a href="https://gamehub.vi.abc.br" target="_blank" class="card-link">
+                        <span class="material-symbols-rounded">open_in_new</span> Acessar GameHub
+                    </a>
+                </div>
+
+                <!-- CARD POEMAS -->
+                <div class="card reveal" style="transition-delay: 0.2s;">
+                    <div class="icon-box"><span class="material-symbols-rounded">menu_book</span></div>
+                    <h3>Poemas Diários</h3>
+                    <p>
+                        Um espaço dedicado à arte, literatura e reflexão. Acompanhe publicações e textos imersivos que alimentam a alma e a criatividade.
+                    </p>
+                    <a href="https://weakglowpoems.blogspot.com/?m=1" target="_blank" class="card-link" style="color: var(--light-blue); background: rgba(37, 99, 235, 0.1); border-color: rgba(37, 99, 235, 0.3);">
+                        <span class="material-symbols-rounded">auto_stories</span> Ler Poemas
+                    </a>
+                </div>
+
+                <!-- CARD CHANNEL TO GOLD -->
+                <div class="card reveal" style="transition-delay: 0.4s;">
+                    <div class="icon-box"><span class="material-symbols-rounded">groups</span></div>
+                    <h3>Channel to Gold</h3>
+                    <p>
+                        Faça parte da nossa comunidade VIP no WhatsApp. Receba atualizações exclusivas, novidades em primeira mão e interaja conosco.
+                    </p>
+                    <a href="https://whatsapp.com/channel/0029Vb7g10jInlqXlnsZ170O" target="_blank" class="card-link" style="color: #25D366; background: rgba(37, 211, 102, 0.1); border-color: rgba(37, 211, 102, 0.3);">
+                        <span class="material-symbols-rounded">forum</span> Entrar no Canal
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="redes" class="section" style="background: rgba(2, 6, 23, 0.9);">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title reveal">Conecte-se Conosco</h2>
+            <p class="reveal" style="color: var(--text-muted); font-size: 1.2rem; margin-bottom: 40px; transition-delay: 0.2s;">
+                Acompanhe os bastidores, gameplays, atualizações e muito mais nas nossas redes sociais oficiais.
+            </p>
+            
+            <div class="social-grid reveal" style="transition-delay: 0.4s;">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/gabriel6a.ofc/" target="_blank" class="social-btn insta" title="Instagram">
+                    <span class="material-symbols-rounded" style="font-size: 32px;">photo_camera</span>
+                </a>
+                
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@gabriel6a.oficial" target="_blank" class="social-btn yt" title="YouTube">
+                    <span class="material-symbols-rounded" style="font-size: 32px;">smart_display</span>
+                </a>
+
+                <!-- WhatsApp (Canal) -->
+                <a href="https://whatsapp.com/channel/0029Vb7g10jInlqXlnsZ170O" target="_blank" class="social-btn wpp" title="WhatsApp Channel">
+                    <span class="material-symbols-rounded" style="font-size: 32px;">chat</span>
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com/gegpbrasil" target="_blank" class="social-btn gh" title="GitHub">
+                    <span class="material-symbols-rounded" style="font-size: 32px;">code</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Projeto VI. Criando o impossível desde sempre. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Script para animação de scroll (Revelar elementos ao descer a página) -->
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Chamar uma vez para carregar os elementos que já estão na tela
+        reveal();
+    </script>
+</body>
+</html>
